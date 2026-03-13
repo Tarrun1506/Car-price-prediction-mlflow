@@ -80,6 +80,8 @@ Open:
 
 ## Docker
 
+This project now follows the same deployment style as the house-price project: Dockerfile-based startup with Streamlit as the main process.
+
 Build:
 
 ```bash
@@ -97,8 +99,9 @@ docker run -p 8501:8501 -e PORT=8501 car-price-predictor
 1. Push this project to GitHub
 2. Make sure [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl) is included in the repo
 3. Create or redeploy the Railway project from the GitHub repo
-4. This Dockerfile explicitly sets `STREAMLIT_SERVER_PORT` from Railway's `PORT` during container startup
-5. Open the deployed link and test the app
+4. Railway will use the `Dockerfile`
+5. The Docker startup now clears bad `STREAMLIT_SERVER_*` env vars before launching Streamlit
+6. Open the deployed link and test the app
 
 ## Submission
 
