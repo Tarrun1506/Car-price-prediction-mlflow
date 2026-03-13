@@ -17,7 +17,6 @@ CAR_PRICE/
 |   |-- mlflow.db
 |   `-- mlruns/
 |-- Dockerfile
-|-- Procfile
 |-- requirements.txt
 `-- README.md
 ```
@@ -56,12 +55,6 @@ jupyter notebook
 Open [D:\MLOPS\CAR_PRICE\src\car_price_mlflow.ipynb](D:\MLOPS\CAR_PRICE\src\car_price_mlflow.ipynb) and run all cells.
 
 The notebook reads data from [D:\MLOPS\CAR_PRICE\data\carprice.csv](D:\MLOPS\CAR_PRICE\data\carprice.csv) and saves the trained model to [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl).
-
-Note: your current notebook runs have already created MLflow tracking files inside `src/`:
-- `src/mlflow.db`
-- `src/mlruns/`
-
-These are local tracking outputs and are ignored by Git.
 
 ## Run the Streamlit App
 
@@ -103,10 +96,9 @@ docker run -p 8501:8501 -e PORT=8501 car-price-predictor
 
 1. Push this project to GitHub
 2. Make sure [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl) is included in the repo
-3. Create a Railway project from the GitHub repo
-4. Delete any custom Railway variable named `STREAMLIT_SERVER_PORT`
-5. Railway will use the `Dockerfile` and provide `PORT` automatically
-6. Open the deployed link and test the app
+3. Create or redeploy the Railway project from the GitHub repo
+4. This Dockerfile explicitly sets `STREAMLIT_SERVER_PORT` from Railway's `PORT` during container startup
+5. Open the deployed link and test the app
 
 ## Submission
 
