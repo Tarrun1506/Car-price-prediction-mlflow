@@ -6,8 +6,8 @@ This project predicts used car selling prices using machine learning. Model trai
 
 ```text
 CAR_PRICE/
-|-- app/
-|   `-- app.py
+|-- app.py
+|-- run_streamlit.py
 |-- data/
 |   `-- carprice.csv
 |-- models/
@@ -26,7 +26,7 @@ CAR_PRICE/
 1. Train the model in `src/car_price_mlflow.ipynb`
 2. Track experiments using MLflow
 3. Save the trained model in `models/model.pkl`
-4. Run the Streamlit app from `app/app.py`
+4. Run the Streamlit app from `app.py`
 5. Dockerize the project
 6. Deploy on Railway
 
@@ -56,10 +56,10 @@ Open [D:\MLOPS\CAR_PRICE\src\car_price_mlflow.ipynb](D:\MLOPS\CAR_PRICE\src\car_
 
 The notebook reads data from [D:\MLOPS\CAR_PRICE\data\carprice.csv](D:\MLOPS\CAR_PRICE\data\carprice.csv) and saves the trained model to [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl).
 
-## Run the Streamlit App
+## Run the Streamlit App Locally
 
 ```bash
-streamlit run app/app.py
+streamlit run app.py
 ```
 
 Open:
@@ -80,7 +80,10 @@ Open:
 
 ## Docker
 
-This project now follows the same deployment style as the house-price project: Dockerfile-based startup with Streamlit as the main process.
+This deployment now follows the same simple shape as the house-price project:
+- root `app.py`
+- Dockerfile-based Streamlit startup
+- no Procfile required
 
 Build:
 
@@ -100,7 +103,7 @@ docker run -p 8501:8501 -e PORT=8501 car-price-predictor
 2. Make sure [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl) is included in the repo
 3. Create or redeploy the Railway project from the GitHub repo
 4. Railway will use the `Dockerfile`
-5. The Docker startup now clears bad `STREAMLIT_SERVER_*` env vars before launching Streamlit
+5. The container starts through `run_streamlit.py`, which sets the correct Streamlit port from Railway's `PORT`
 6. Open the deployed link and test the app
 
 ## Submission
