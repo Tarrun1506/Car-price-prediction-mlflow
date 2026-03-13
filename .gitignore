@@ -1,0 +1,18 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+artifacts/
+mlruns/
+src/mlruns/
+mlflow.db
+src/mlflow.db
+*.db
+
+# Local environment files
+.env
+.env.*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
