@@ -1,4 +1,4 @@
-﻿# Car Price Prediction
+# Car Price Prediction
 
 This project predicts used car selling prices using machine learning. Model training and MLflow tracking are done in Jupyter Notebook, and the frontend is built with Streamlit.
 
@@ -23,12 +23,11 @@ CAR_PRICE/
 
 ## Current Workflow
 
-1. Train the model in `src/car_price_mlflow.ipynb`
-2. Track experiments using MLflow
-3. Save the trained model in `models/model.pkl`
-4. Run the Streamlit app from `app.py`
-5. Dockerize the project
-6. Deploy on Railway
+1. Train the model using `train_model.py` (which tracks with MLflow)
+2. Verify predictions using `test.py`
+3. Run the Streamlit app from `app.py`
+4. Dockerize the project
+5. Deploy on Railway
 
 ## Use venv
 
@@ -46,15 +45,19 @@ pip install -r requirements.txt
 
 ## Train the Model
 
-Start Jupyter from the project root:
-
 ```bash
-jupyter notebook
+python train_model.py
 ```
 
-Open [D:\MLOPS\CAR_PRICE\src\car_price_mlflow.ipynb](D:\MLOPS\CAR_PRICE\src\car_price_mlflow.ipynb) and run all cells.
+This script reads data from [D:\MLOPS\CAR_PRICE\data\carprice.csv](D:\MLOPS\CAR_PRICE\data\carprice.csv), logs metrics and parameters to MLflow, and saves the trained model to [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl).
 
-The notebook reads data from [D:\MLOPS\CAR_PRICE\data\carprice.csv](D:\MLOPS\CAR_PRICE\data\carprice.csv) and saves the trained model to [D:\MLOPS\CAR_PRICE\models\model.pkl](D:\MLOPS\CAR_PRICE\models\model.pkl).
+## Test the Model
+
+```bash
+python test.py
+```
+
+This script loads the trained model and performs a sample prediction to verify everything is working correctly.
 
 ## Run the Streamlit App Locally
 

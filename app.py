@@ -1,11 +1,10 @@
-﻿import joblib
+import joblib
 import pandas as pd
 import streamlit as st
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / 'models' / 'model.pkl'
-FALLBACK_MODEL_PATH = BASE_DIR / 'artifacts' / 'car_price_model.joblib'
+MODEL_PATH = BASE_DIR / 'model.pkl'
 
 st.set_page_config(page_title='Car Price Predictor', layout='wide')
 
@@ -14,15 +13,13 @@ st.set_page_config(page_title='Car Price Predictor', layout='wide')
 def load_model():
     if MODEL_PATH.exists():
         return joblib.load(MODEL_PATH)
-    if FALLBACK_MODEL_PATH.exists():
-        return joblib.load(FALLBACK_MODEL_PATH)
-    raise FileNotFoundError('Model file not found. Run the notebook first.')
+    raise FileNotFoundError('Model file not found. Run train_model.py first.')
 
 
 model = load_model()
 
-st.title('Car Price Prediction')
-st.write('Enter the car details below to predict the selling price.')
+st.title('Car Price Predictor')
+st.write('Enter car details to predict the selling price.')
 
 with st.form('prediction_form'):
     left, right = st.columns(2)
